@@ -6,6 +6,8 @@ twig:
         dev_contact_phone: '+33 6 123456789'
         dev_contact_mail: 'contact@fhe.com'
         dev_contact_git: 'https://github.com/FloNoobDev'
+        
+    form_themes: ['bootstrap_5_layout.html.twig']
 
 when@test:
     twig:

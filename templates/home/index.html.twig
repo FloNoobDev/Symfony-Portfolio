@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PageHomeController!{% endblock %}
+{% block title %}Portfolio{% endblock %}
 
 {% block description %}Portfolio de { dev_contact_name }{% endblock %}
 
@@ -8,28 +8,115 @@
 
 <main class="text-light">
 
+    <hr class="border border-dark border-3">
+
     {# Pitch #}
-    <section id="pitch" class="bg-dark bg-opacity-75">
-        <h3 class="text-center">Qui suis-je?</h3>
+    <section id="pitch" class="bg-dark bg-opacity-75 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 offset-3 my-3 text-center border  border-white border-1 rounded">
+                    <div class="py-2">
+                        <h3>Qui suis-je?</h3>
+                        <h4>{{profil.name}}</h4>
+                        <h5 class="fst-italic">{{profil.shortpitch}}</h5>
+                        <p>{{profil.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <hr class="border border-dark border-3">
+
     {# Production #}
-    <section id="project" class="bg-dark bg-opacity-50">
+    <section id="project" class="bg-dark bg-opacity-50 py-3">
         <h3 class="text-center">Mes productions</h3>
 
     </section>
 
+    <hr class="border border-dark border-3">
+
     {# Compétence #}
-    <section id="skills" class="bg-dark bg-opacity-75">
-        <h3 class="text-center">Mes compétences</h3>
+    <section id="skills" class="bg-dark bg-opacity-75 py-3">
+        <h3 class="text-center py-2">Mes compétences</h3>
+        <div class="container-fluid py-5">
+            <div class="row">
+                {% for category in skillsCategories %}
+                <div class="col">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="text-center">
+                                    <h5 class="text-start ps-2">{{category.name}}</h5>
+                                </div>
+
+                                <hr class="border border-dark border-2 opacity-75">
+
+                                <div class="text-center">
+                                    <table class="table">
+                                        {% for skill in category.skills %}
+                                        <tr class="text-light">
+                                            <td class="text-start"><img id="imgSkill"
+                                                    src="{{asset('img/logo/'~skill.image)}}" alt="{{skill.image}}"> -
+                                                {{skill.name}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
     </section>
+
+    <hr class="border border-dark border-3">
 
     {# Contact #}
-    <section id="contact" class="bg-dark bg-opacity-50">
+    <section id="contact" class="bg-dark bg-opacity-50 py-3">
         <h3 class="text-center">Me contacter</h3>
 
+        {{ form_start(formContact) }}
+        <div class="container border border-2 border-light rounded p-2">
+
+            <div class="row">
+                <div class="col-4 offset-2">
+                    {{ form_row(formContact.fullName) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(formContact.email) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 offset-2">
+                    {{ form_row(formContact.subject) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 offset-2">
+                    {{ form_row(formContact.message) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 offset-2 my-3 text-end">
+                    <button type="reset" class="btn btn-outline-danger me-3">Annuler</button>
+                    <button type="submit" class="btn btn-success">Envoyer</button>
+                </div>
+            </div>
+
+        </div>
+        {{ form_end(formContact) }}
+
     </section>
+
+    <hr class="border border-dark border-3">
 
 </main>
 
