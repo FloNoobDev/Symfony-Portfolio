@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProjectCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminProjectCategoryController extends AbstractController
 {
     #[Route('/admin/project-category', name: 'admin_project_category')]
-    public function index(): Response
+    public function index(ProjectCategoryRepository $projectCategoryRepository): Response
     {
         return $this->render('admin/admin_project_category/index.html.twig', [
-            'controller_name' => 'AdminProjectCategoryController',
+            'projectCats' => $projectCategoryRepository->findAll(),
         ]);
     }
 
