@@ -32,6 +32,25 @@
     <section id="project" class="bg-dark bg-opacity-50 py-3">
         <h3 class="text-center">Mes productions</h3>
 
+        <div class="container">
+            <div class="row">
+                {% for cat in projectsCats %}
+                    {% for proj in cat.projects %}
+                        <div class="col-4 offset-1">
+                            <div class="card text-dark card-black">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{proj.name}}</h4>
+                                    <p class="card-text">{{proj.description}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <p>{{cat.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
     </section>
 
     <hr class="border border-dark border-3">
