@@ -1,20 +1,36 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello AdminProfileController!{% endblock %}
+{% block title %}Les profiles{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<main>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Short pitch</td>
+                <td>Description</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vProfile in profiles %}
+            <tr>
+                <td>{{vProfile.name}}</td>
+                <td>{{vProfile.shortPitch}}</td>
+                <td>{{vProfile.description}}</td>
+                <td>
+                <a href="" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
+                <a href="" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a href="{{ path('create_profile') }}" class="btn btn-primary">Ajouter un profil</a>
+    </div>
+</main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'G:/Symfony-Portfolio/src/Controller/AdminProfileController.php'|file_link(0) }}">src/Controller/AdminProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'G:/Symfony-Portfolio/templates/admin_profile/index.html.twig'|file_link(0) }}">templates/admin_profile/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
