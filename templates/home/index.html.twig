@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PageHomeController!{% endblock %}
+
+{% block description %}Portfolio de { dev_contact_name }{% endblock %}
+
+{% block body %}
+
+<main class="text-light">
+
+    {# Pitch #}
+    <section id="pitch" class="bg-dark bg-opacity-75">
+        <h3 class="text-center">Qui suis-je?</h3>
+    </section>
+
+    {# Production #}
+    <section id="project" class="bg-dark bg-opacity-50">
+        <h3 class="text-center">Mes productions</h3>
+
+    </section>
+
+    {# Compétence #}
+    <section id="skills" class="bg-dark bg-opacity-75">
+        <h3 class="text-center">Mes compétences</h3>
+
+    </section>
+
+    {# Contact #}
+    <section id="contact" class="bg-dark bg-opacity-50">
+        <h3 class="text-center">Me contacter</h3>
+
+    </section>
+
+</main>
+
+{% endblock %}

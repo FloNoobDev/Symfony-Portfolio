@@ -1,5 +1,11 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        dev_contact_name: 'H. Florian'
+        dev_contact_city: 'Lille'
+        dev_contact_phone: '+33 6 123456789'
+        dev_contact_mail: 'contact@fhe.com'
+        dev_contact_git: 'https://github.com/FloNoobDev'
 
 when@test:
     twig:
