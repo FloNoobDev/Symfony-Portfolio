@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminProjectController extends AbstractController
 {
-    #[Route('/admin/projects', name: 'admin_project')]
+    #[Route('/admin/projects', name: 'admin_projects')]
     public function index(ProjectRepository $projectRepository): Response
     {
         return $this->render('admin/admin_project/index.html.twig', [

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminSkillController extends AbstractController
 {
-    #[Route('/admin/skills', name: 'admin_skill')]
+    #[Route('/admin/skills', name: 'admin_skills')]
     public function index(SkillRepository $skillRepository): Response
     {
         return $this->render('admin/admin_skill/index.html.twig', [
