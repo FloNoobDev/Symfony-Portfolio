@@ -6,37 +6,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminProjectController extends AbstractController
+class AdminProjectCategoryController extends AbstractController
 {
-    #[Route('/admin/project', name: 'admin_project')]
+    #[Route('/admin/project/category', name: 'admin_project_category')]
     public function index(): Response
     {
-        return $this->render('admin/admin_project/index.html.twig', [
-            'controller_name' => 'AdminProjectController',
+        return $this->render('admin/admin_project_category/index.html.twig', [
+            'controller_name' => 'AdminProjectCategoryController',
         ]);
     }
 
-   
-
-    #[Route('/admin/create-proj', name: 'create_proj')]
-    public function createProj(): Response
+    #[Route('/admin/create-proj-cat', name: 'create_projcat')]
+    public function createProjCat(): Response
     {
         return $this->render('admin/project/createProject.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
-    #[Route('/admin/update-proj', name: 'update_proj')]
-    public function updateProj(): Response
+    #[Route('/admin/update-proj-cat', name: 'update_projcat')]
+    public function updateProjCat(): Response
     {
         return $this->render('admin/project/updateProject.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
-    #[Route('/admin/delete-proj', name: 'delete_proj')]
-    public function deleteProj(): Response
+    #[Route('/admin/delete-proj-cat', name: 'delete_projcat')]
+    public function deleteProjCat(): Response
     {
         return $this->render('admin/project/deleteProject.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
+
 }
