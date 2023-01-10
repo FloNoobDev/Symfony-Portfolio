@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminProjectCategoryController extends AbstractController
 {
-    #[Route('/admin/project/category', name: 'admin_project_category')]
+    #[Route('/admin/project-category', name: 'admin_project_category')]
     public function index(): Response
     {
         return $this->render('admin/admin_project_category/index.html.twig', [
