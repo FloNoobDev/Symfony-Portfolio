@@ -7,15 +7,22 @@
 <main>
     <h3 class="text-center py-3">Création d'une catégorie de projet</h3>
 
-    <form action="POST">
+    {{form_start(form)}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{form_row(form.name)}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 offset-2 text-end">
+                <a class="btn btn-danger" href="{{path('skill_categories')}}">Annuler</a>                
+                <button class="btn btn-success">Créer</button>
+            </div>
+        </div>
+    </div>
+    {{form_end(form)}}
 
-        {{form_start(form)}}
-        {{form_end(form)}}
-        
-        <a class="btn btn-success" href="{{ path('skill_categories') }}">Annuler</a>
-        <button type="submit" class="btn btn-danger">Créer</button>
-        
-    </form>
 </main>
 
 {% endblock %}
