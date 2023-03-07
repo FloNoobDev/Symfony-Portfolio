@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PageHomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'index')]
     public function index(ProfilRepository $profilRepository, SkillCategoryRepository $skillCategoryRepository, ProjectCategoryRepository $projectCategoryRepository): Response
     {
         return $this->render('home/index.html.twig', [

@@ -24,11 +24,11 @@
 
         <header>{% include "_partials/headerAdmin.html.twig" %}</header>
 
-        <main class="container">
+        <main class="container-fluid">
             <div class="row">
-                <div class="col-1 bg-dark">
+                <div class="col-1 bg-dark" >
                     <ul>
-                        <li class="py-2"><a class="text-light" title="accueil admin" href="{{ path('admin') }}"><i class="bi bi-pc-display-horizontal fs-3"></i></a></li>
+                        <li class="py-2"><a class="text-light" title="accueil admin" href="{{ path('index-admin') }}"><i class="bi bi-pc-display-horizontal fs-3"></i></a></li>
 
                         <li class="py-2"><a class="text-light" title="Profils" href="{{ path('admin_profiles')}}"><i class="bi bi-file-person fs-3"></i></i></a></li>
 
@@ -38,7 +38,7 @@
                         <li class="py-2"><a class="text-light" title="Catégories compétence" href="{{ path('skill_categories') }}"><i class="bi bi-bookmark fs-3"></i></li>
                         <li class="py-2"><a class="text-light" title="Compétences" href="{{ path('admin_skills') }}"><i class="bi bi-book fs-3"></i></a></li>
 
-                        <li class="py-2"><a class="text-light" title="Quitter" href="{{ path('app_home') }}"><i class="bi bi-door-open fs-3"></i></a></li>
+                        <li class="py-2"><a class="text-light" title="Quitter" href="{{ path('index') }}"><i class="bi bi-door-open fs-3"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-6 offset-2">
