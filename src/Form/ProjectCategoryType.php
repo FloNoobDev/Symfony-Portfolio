@@ -22,6 +22,7 @@ class ProjectCategoryType extends AbstractType
                     'maxLength' => 50
                 ]
             ])
+            ->add('submit',SubmitType::class)
         ;
     }
 

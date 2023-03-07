@@ -2,17 +2,27 @@
 
 namespace App\Controller;
 
+use App\Repository\SkillRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/skill', name: 'skill')]
 class SkillController extends AbstractController
 {
-    #[Route('/skill', name: 'app_skill')]
+    #[Route('/', name: '')]
     public function index(): Response
     {
         return $this->render('skill/index.html.twig', [
             'controller_name' => 'SkillController',
+        ]);
+    }
+
+    #[Route('-admin', name: '-admin')]
+    public function indexAdmin(SkillRepository $skillRepository): Response
+    {
+        return $this->render('admin/admin_skill/index.html.twig', [
+            'skills' => $skillRepository->findAll(),
         ]);
     }
 }

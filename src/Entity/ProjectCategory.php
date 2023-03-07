@@ -21,6 +21,12 @@ class ProjectCategory
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Project::class)]
     private Collection $projects;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createAt = null;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -69,6 +75,30 @@ class ProjectCategory
                 $project->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeImmutable
+    {
+        return $this->createAt;
+    }
+
+    public function setCreateAt(\DateTimeImmutable $createAt): self
+    {
+        $this->createAt = $createAt;
 
         return $this;
     }
