@@ -1,8 +1,48 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
+<main>
 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 my-2 py-1">
+                <h3 class="text-center">Accueil administration</h3>
+            </div>
+        </div>
+        {% include "_partials/brSmall.html.twig" %}
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <table class="table table-striped border border-dark">
+                    <thead class="bg-dark text-light">
+                        <tr>
+                            <th>Désignation</th>
+                            <th>Nombre en base</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Catégorie de compétence</td>
+                            <td>{{ projectCatCount > 0 ? skillCatCount : 'Vide' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Catégorie de projet</td>
+                            <td>{{ projectCatCount > 0 ? projectCatCount : 'Vide' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Projets</td>
+                            <td>{{ projectCatCount > 0 ? projectCount : 'Vide' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Compétences</td>
+                            <td>{{ projectCatCount > 0 ? skillCount : 'Vide' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

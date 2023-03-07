@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class PageHomeController extends AbstractController
+class IndexController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(ProfilRepository $profilRepository, SkillCategoryRepository $skillCategoryRepository, ProjectCategoryRepository $projectCategoryRepository): Response

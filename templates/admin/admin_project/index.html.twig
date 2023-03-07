@@ -23,13 +23,11 @@
             <tr>
                 <td>{{loop.index}}</td>
                 <td>{{project.name}}</td>
-                <td>A venir</td>
-                {# <td>{{project.categoryId}}</td> #}
+               <td>{{project.category.name}}</td>
                 <td>{{project.shortText}}</td>
                 <td>{{project.description}}</td>
                 <td>{{project.environment}}</td>
-                <td>A venir</td>               
-                 {# <td>{{project.startedAt}}</td> #}
+                <td>{{project.startedAt|date('d/m/Y')}}</td>
 
                 <td>
                     <a href="" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
