@@ -1,28 +1,23 @@
-{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Project - Create{% endblock %}
-
-{% block body %}
-
-<main>
-    <h3 class="text-center py-3">Création d'une catégorie de projet</h3>
-
-    {{form_start(form)}}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{form_row(form.name)}}
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-black" id="addModalLabel">Création d'une catégorie de compétence</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-8 offset-2 text-end">
-                <a class="btn btn-danger" href="{{path('skill_categories')}}">Annuler</a>                
-                <button class="btn btn-success">Créer</button>
+
+            {{form_start(form)}}
+            <div class="modal-body text-black">
+                {{form_row(form.name,{'label':'Désignation:' })}}
+                {{form_row(form.submit, {'label':'Ajouter'})}}
             </div>
+            {{form_end(form)}}
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+
         </div>
     </div>
-    {{form_end(form)}}
-
-</main>
-
-{% endblock %}
+</div>

@@ -37,11 +37,21 @@ class SkillCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->managerRegistry->getManager();
-            $manager->persist($skillCategory);
-            $manager->flush();
+            $slug = strtolower($this->slugger->slug($skillCategory->getName()));
 
-            return $this->redirectToRoute('skill-category-admin');
+            if ($this->skillCategoryRepository->findOneBy(['slug' => $slug]) == null) {
+                $skillCategory->setCreatedAt(new \DateTimeImmutable);
+                $skillCategory->setSlug($slug);
+
+                $manager = $this->managerRegistry->getManager();
+                $manager->persist($skillCategory);
+                $manager->flush();
+                $this->addFlash('success', 'Catégorie ajoutée');
+
+                return $this->redirectToRoute('skill-category-admin');
+            } else {
+                $this->addFlash('warning', 'Catégorie déjà présente');
+            }
         }
 
         return $this->render('Skill/skill-category/indexAdmin.html.twig', [
@@ -51,27 +61,55 @@ class SkillCategoryController extends AbstractController
     }
 
 
-    #[Route('/admin/skill-category-update/{id}', name: '-admin/update')]
+    #[Route('-admin/update/{id}', name: '-admin-update')]
     public function update(Request $request, SkillCategory $skillCategory): Response
     {
+        $skillCategoryOld = clone $skillCategory;
+
         $form = $this->createForm(SkillCategoryType::class, $skillCategory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = strtolower($this->slugger->slug($skillCategory->getName()));
             $manager = $this->managerRegistry->getManager();
-            $manager->persist($skillCategory);
-            $manager->flush();
 
-            return $this->redirectToRoute('skill_categories');
+            if ($slug == $skillCategoryOld->getSlug()) {
+                $manager->persist($skillCategory);
+                $manager->flush();
+                $this->addFlash('success', 'Catégorie modifiée');
+
+                return $this->redirectToRoute('skill-category-admin');
+            } else {
+                if ($this->skillCategoryRepository->findOneBy(['slug' => $slug]) == null) {
+                    $skillCategory->setSlug($slug);
+
+                    $manager->persist($skillCategory);
+                    $manager->flush();
+                    $this->addFlash('success', 'Catégorie modifiée');
+
+                    return $this->redirectToRoute('skill-category-admin');
+                } else {
+                    $this->addFlash('warning', 'Catégorie déjà présente');
+                }
+            }
         }
 
-        return $this->render('admin/admin_skill_category/formEdit.html.twig', [
+        return $this->render('Skill/skill-category/formEdit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/admin/skill-category-delete/{id}', name: '-admin/delete')]
-    public function delete(): Response
+    #[Route('-admin/delete/{id}', name: '-admin-delete')]
+    public function delete(SkillCategory $skillCategory): Response
     {
+        if (count($skillCategory->getSkills()) > 0) {
+            $this->addFlash('warning', 'Catégorie utilisée');
+        } else {
+            $manager = $this->managerRegistry->getManager();
+            $manager->remove($skillCategory);
+            $manager->flush();
+
+            $this->addFlash('warning', 'Catégorie supprimée');
+        }
         return $this->redirectToRoute('skill-category-admin');
     }
 }

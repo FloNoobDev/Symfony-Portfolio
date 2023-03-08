@@ -1,9 +1,38 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Project - Update{% endblock %}
+{% block title %}SkillCat - Update{% endblock %}
 
 {% block body %}
 
+<main class="container my-2">
 
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="text-center text-capitalize">édition de catégorie de compétences</h3>
+        </div>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        <div class="col-5">
+            {{form_start(form)}}
+            <div class="modal-body text-black">
+                {{form_row(form.name,{'label':'Désignation:' })}}
+                {{form_row(form.submit, {'label':'Modifier'})}}
+            </div>
+            {{form_end(form)}}
+        </div>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-end">
+        <div class="col-1">
+            <a href="{{ path('skill-category-admin') }}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+    
+</main>
 
 {% endblock %}

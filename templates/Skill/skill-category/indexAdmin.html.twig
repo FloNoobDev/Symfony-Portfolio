@@ -3,34 +3,49 @@
 {% block title %}Category Skill{% endblock %}
 
 {% block body %}
-<main class="my-2">
+<main class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="text-center">Les catégories de compétences</h3>
+        </div>
+    </div>
 
-    <h4 class="text-center py-3">Les catégories de compétences</h3>
+    {% include "_partials/brSmall.html.twig" %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Numéro</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody class="align-middle">
-            {% for sCats in skillCats %}
-            <tr>
-                <td>{{loop.index}}</td>
-                <td>{{sCats.name}}</td>
-                <td>
-                    <a href="" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
-                    <a href="" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div>
-        <a href="{{ path('create_skill_category') }}" class="btn btn-primary">Ajouter une catégorie de compétence</a>
+    <div class="row justify-content-center">
+        <table class="table table-light table-striped">
+            <thead>
+                <tr>
+                    <th>Numéro</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                {% for sCats in skillCats %}
+                <tr class="align-middle text-center">
+                    <td>{{loop.index}}</td>
+                    <td>{{sCats.name}}</td>
+                    <td>
+                        <a href="{{ path('skill-category-admin-update',{'id':sCats.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
+                        <a href="{{ path('skill-category-admin-delete',{'id':sCats.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-end">
+        <div class="col-1">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#addModal">Création</button>
+        </div>
     </div>
 
 </main>
+
+{% include "Skill/skill-category/formModal.html.twig" %}
 {% endblock %}
