@@ -13,7 +13,7 @@ class SkillController extends AbstractController
     #[Route('/', name: '')]
     public function index(): Response
     {
-        return $this->render('skill/index.html.twig', [
+        return $this->render('Skill/skill/index.html.twig', [
             'controller_name' => 'SkillController',
         ]);
     }
@@ -21,7 +21,7 @@ class SkillController extends AbstractController
     #[Route('-admin', name: '-admin')]
     public function indexAdmin(SkillRepository $skillRepository): Response
     {
-        return $this->render('admin/admin_skill/index.html.twig', [
+        return $this->render('Skill/skill/indexAdmin.html.twig', [
             'skills' => $skillRepository->findAll(),
         ]);
     }

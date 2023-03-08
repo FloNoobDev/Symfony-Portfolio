@@ -1,0 +1,40 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Project - Update{% endblock %}
+
+{% block body %}
+
+<main class="container">
+
+    <div class="row justify-content-center my-2">
+        <h3 class="col-12 text-center text-capitalize">
+            édition d'un projet
+        </h3>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        {{form_start(form)}}
+        <div class="col-12">
+            {{form_row(form.name,{'label':'Désignation :' })}}
+            {{form_row(form.category, {'label':'Catégorie :'})}}
+            {{form_row(form.started_at, {'label':'Débuté le :'})}}
+            {{form_row(form.environment, {'label':'Environnement :'})}}
+            {{form_row(form.shortText, {'label':'Description courte :'})}}
+            {{form_row(form.description, {'label':'Description longue :'})}}
+            {{form_row(form.submit, {'label':'Modifier'})}}
+        </div>
+        {{form_end(form)}}
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-end">
+        <div class="col-1">
+            <a href="{{ path('project-admin') }}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

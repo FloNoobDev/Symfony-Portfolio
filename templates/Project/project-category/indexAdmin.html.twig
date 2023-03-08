@@ -10,9 +10,11 @@
         </div>
     </div>
 
+    {% include "_partials/brSmall.html.twig" %}
+
     <div class="row justify-content-center">
         <div class="col-8">
-            <table class="table">
+            <table class="table table-light table-striped">
                 <thead>
                     <tr>
                         <th>Numéro</th>
@@ -22,13 +24,13 @@
                 </thead>
                 <tbody class="align-middle">
                     {% for pCats in projectCats %}
-                    <tr>
+                    <tr class="align-middle text-center">
                         <td>{{loop.index}}</td>
                         <td>{{pCats.name}}</td>
                         <td>
+                            <a href="{{ path('project-category-admin-update',{'id': pCats.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-5"></i></a>
                             <a href="{{ path('project-category-admin-delete',{'id': pCats.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')"><i
-                                    class="bi bi-trash fs-4"></i></a>
-                            <a href="{{ path('project-category-admin-update',{'id': pCats.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
+                                    class="bi bi-trash fs-5"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -38,13 +40,13 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-12 text-end">*
+        <div class="col-12 text-end">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#addModal">Création</button>
         </div>
     </div>
 
-    {% include "admin/admin_project_category/formModal.html.twig" %}
+    {% include "Project/project-category/formModal.html.twig" %}
 
 </main>
 {% endblock %}

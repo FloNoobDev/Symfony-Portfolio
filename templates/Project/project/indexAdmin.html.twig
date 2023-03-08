@@ -1,0 +1,61 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+<main class="container my-2">
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="text-center">Les projets</h3>
+        </div>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        <div class="col-11">
+            <table class="table table-light table-striped">
+                <thead>
+                    <th>Numéro</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Résumé</th>
+                    <th>Description</th>
+                    <th>Outil</th>
+                    <th>Débuté le</th>
+                    <th>Actions</th>
+                </thead>
+
+                <tbody class="align-middle">
+                    {% for project in projects %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{project.name}}</td>
+                        <td>{{project.category.name}}</td>
+                        <td>{{project.shortText}}</td>
+                        <td>{{project.description|u.truncate(15,'...',false)}}</td>
+                        <td>{{project.environment}}</td>
+                        <td>{{project.startedAt|date('d/m/Y')}}</td>
+
+                        <td>
+                            <a href="{{ path('project-admin-update',{'id':project.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-5"></i></a>
+                            <a href="{{ path('project-admin-delete',{'id':project.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-5"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#addModal">Création</button>
+    </div>
+
+</main>
+
+{% include "Project/project/formModal.html.twig" %}
+
+{% endblock %}

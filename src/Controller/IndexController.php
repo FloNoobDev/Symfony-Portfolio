@@ -50,8 +50,7 @@ class IndexController extends AbstractController
     #[Route('/admin', name: '-admin')]
     public function indexAdmin(): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+        return $this->render('home/indexAdmin.html.twig', [
             'projectCatCount' => count($this->projectCatRepo->findAll()),
             'projectCount' => count($this->projectRepo->findAll()),
             'skillCatCount' => count($this->skillCatRepo->findAll()),

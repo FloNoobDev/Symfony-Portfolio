@@ -1,30 +1,39 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Repository\ProfilRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminProfileController extends AbstractController
+#[Route('/profile', name: 'profile')]
+class ProfileController extends AbstractController
 {
-    #[Route('/admin/profile', name: 'admin_profiles')]
-    public function index(ProfilRepository $profilRepository): Response
+    private ProfilRepository $profilRepository;
+
+    public function __construct(
+        ProfilRepository $profilRepository,
+    ) {
+        $this->profilRepository = $profilRepository;
+    }
+
+    #[Route('-admin', name: '-admin')]
+    public function index(): Response
     {
-        return $this->render('admin/admin_profile/index.html.twig', [
-            'profiles'=>$profilRepository->findAll(),
+        return $this->render('profile/indexAdmin.html.twig', [
+            'profiles' => $this->profilRepository->findAll(),
         ]);
     }
 
-    #[Route('/admin/profile/create', name: 'create_profile')]
+    #[Route('-admin/create', name: '-admin-create')]
     public function create(): Response
     {
         return $this->render('admin/_profile/createProfile.html.twig', [
             'controller_name' => 'AdminProfileController',
         ]);
     }
-    #[Route('/admin/profile/{id}', name: 'update_profile')]
+    #[Route('-admin/update/{id}', name: '-admin-update')]
     public function update(): Response
     {
         return $this->render('admin/_profile/updateProfile.html.twig', [

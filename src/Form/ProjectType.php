@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use App\Entity\ProjectCategory;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,19 +20,39 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TypeText::class,[
-                'required' => true,                
+            ->add('name', TextType::class, [
                 'attr' => [
-                    'maxLength' => 80]
+                    'maxLength' => 80
+                ]
             ])
-            ->add('description',TextareaType::class,[
-                'required' => true,                
+
+            ->add('description', TextareaType::class, [
+                'required' => false,
             ])
-            ->add('started_at')
-            ->add('shortText')
-            ->add('environment')
-            ->add('category')
-        ;
+
+            ->add('started_at',DateType::class,[
+                'widget' => 'single_text',
+                'mapped'=>false,
+            ])
+
+            ->add('shortText', TextType::class, [
+                'attr' => [
+                    'maxLength' => 50
+                ]
+            ])
+
+            ->add('environment',TextType::class,[
+                'attr' => [
+                    'maxLength' => 50
+                ]
+            ])
+
+            ->add('category', EntityType::class, [
+                'class' => ProjectCategory::class,
+                'choice_label' => 'name',
+            ])
+            
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

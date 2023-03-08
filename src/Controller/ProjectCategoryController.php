@@ -53,7 +53,7 @@ class ProjectCategoryController extends AbstractController
             }
         }
 
-        return $this->render('admin/admin_project_category/index.html.twig', [
+        return $this->render('Project/project-category/indexAdmin.html.twig', [
             'projectCats' => $this->projectCategoryRepository->findAll(),
             'form' => $form->createView(),
         ]);
@@ -80,7 +80,7 @@ class ProjectCategoryController extends AbstractController
             }
         }
 
-        return $this->render('admin/admin_project_category/formEdit.html.twig', [
+        return $this->render('Project/project-category/formEdit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
