@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class SkillType extends AbstractType
+class SkillEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,7 +26,7 @@ class SkillType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'help' => 'Image format jpg, jpeg, webp ou png - 1 Mo maximum',
                 'constraints' => [

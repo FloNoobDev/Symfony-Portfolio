@@ -28,8 +28,8 @@
                     <td>{{skill.name}}</td>
                     <td>{{skill.category.name}}</td>
                     <td>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
-                        <a href="" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
+                        <a href="{{ path('skill-admin-update',{ 'id':skill.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
+                        <a href="{{ path('skill-admin-delete',{ 'id':skill.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -18,8 +18,10 @@
         <div class="col-5">
             {{form_start(form)}}
             <div class="modal-body text-black">
-                {{form_row(form.name,{'label':'Désignation:' })}}
-                {{form_row(form.img,{'label':'Désignation:' })}}
+                {{form_row(form.name,{'label':'Désignation :' })}}
+                {{form_row(form.seniority,{'label':'Ancienneté :' })}}
+                {{form_row(form.category,{'label':'Catégorie :' })}}
+                {{form_row(form.image,{'label':'Image :','help':'Facultatif - Image format jpg, jpeg, webp ou png - 1 Mo maximum', 'help_attr':{'class':'fst-italic'} })}}
                 {{form_row(form.submit, {'label':'Modifier'})}}
             </div>
             {{form_end(form)}}

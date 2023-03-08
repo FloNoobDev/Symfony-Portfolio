@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -9,8 +8,10 @@
 
             {{form_start(form)}}
             <div class="modal-body text-black">
-                {{form_row(form.name,{'label':'Désignation:' })}}
-                {{form_row(form.img,{'label':'Image:' })}}
+                {{form_row(form.name,{'label':'Désignation :' })}}
+                {{form_row(form.seniority,{'label':'Ancienneté :' })}}
+                {{form_row(form.category,{'label':'Catégorie :' })}}
+                {{form_row(form.image,{'label':'Image :', 'help_attr':{'class':'fst-italic'} })}}
                 {{form_row(form.submit, {'label':'Ajouter'})}}
             </div>
             {{form_end(form)}}

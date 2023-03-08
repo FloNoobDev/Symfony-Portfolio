@@ -30,7 +30,7 @@ class SkillCategoryController extends AbstractController
     }
 
     #[Route('-admin', name: '-admin')]
-    public function index(Request $request): Response
+    public function indexAdmin(Request $request): Response
     {
         $skillCategory = new SkillCategory();
         $form = $this->createForm(SkillCategoryType::class, $skillCategory);
