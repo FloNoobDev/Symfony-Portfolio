@@ -18,6 +18,7 @@
                 <tr>
                     <th>Numéro</th>
                     <th>Nom</th>
+                    <th>Projet lié</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -26,6 +27,7 @@
                 <tr class="align-middle text-center">
                     <td>{{loop.index}}</td>
                     <td>{{sCats.name}}</td>
+                    <td>{{sCats.skills|length}}</td>
                     <td>
                         <a href="{{ path('skill-category-admin-update',{'id':sCats.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
                         <a href="{{ path('skill-category-admin-delete',{'id':sCats.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>

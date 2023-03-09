@@ -26,7 +26,11 @@
             </div>
             {{form_end(form)}}
         </div>
+        <div class="col-4 border-start border-4 d-flex align-items-center">
+            <img src="{{asset('img/skill/'~skill.image)}}" alt="Logo de {{skill.name}}" class="px-5 img-fluid">
+        </div>
     </div>
+
 
     {% include "_partials/brSmall.html.twig" %}
 

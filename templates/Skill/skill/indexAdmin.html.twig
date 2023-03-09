@@ -18,6 +18,8 @@
             <thead>
                 <th>Numéro</th>
                 <th>Nom</th>
+                <th>Ancienneté</th>
+                <th>Image</th>
                 <th>Catégorie</th>
                 <th>Actions</th>
             </thead>
@@ -26,10 +28,12 @@
                 <tr>
                     <td>{{loop.index}}</td>
                     <td>{{skill.name}}</td>
-                    <td>{{skill.category.name}}</td>
+                    <td>{{skill.seniority}} mois</td>
+                    <td> <img src="{{asset('img/skill/'~skill.image)}}" alt="Logo de {{skill.name}}" class="img-thumbnail" style="width:3rem;"> </td>
+                    <td>{{skill.category.name|u.truncate(5,'',false)}}</td>
                     <td>
-                        <a href="{{ path('skill-admin-update',{ 'id':skill.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
-                        <a href="{{ path('skill-admin-delete',{ 'id':skill.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
+                        <a href="{{ path('skill-admin-update',{ 'id':skill.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-5"></i></a>
+                        <a href="{{ path('skill-admin-delete',{ 'id':skill.id}) }}" class="btn btn-danger"><i class="bi bi-trash fs-5"></i></a>
                     </td>
                 </tr>
                 {% endfor %}

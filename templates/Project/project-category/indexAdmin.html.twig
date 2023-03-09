@@ -13,12 +13,13 @@
     {% include "_partials/brSmall.html.twig" %}
 
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-6">
             <table class="table table-light table-striped">
                 <thead>
                     <tr>
                         <th>Numéro</th>
                         <th>Nom</th>
+                        <th>Projet lié</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -27,6 +28,7 @@
                     <tr class="align-middle text-center">
                         <td>{{loop.index}}</td>
                         <td>{{pCats.name}}</td>
+                        <td>{{pCats.projects|length}}</td>
                         <td>
                             <a href="{{ path('project-category-admin-update',{'id': pCats.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-5"></i></a>
                             <a href="{{ path('project-category-admin-delete',{'id': pCats.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')"><i
@@ -38,6 +40,8 @@
             </table>
         </div>
     </div>
+
+    {% include "_partials/brSmall.html.twig" %}
 
     <div class="row justify-content-end">
         <div class="col-1">

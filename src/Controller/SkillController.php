@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Skill;
+use DateTimeImmutable;
 use App\Form\SkillType;
 use App\Form\SkillEditType;
 use App\Repository\SkillRepository;
@@ -60,7 +62,12 @@ class SkillController extends AbstractController
 
                 $manager->persist($skill);
                 $manager->flush();
+
+                $this->addFlash('sucess', 'Compétence ajoutée');
+                return $this->redirectToRoute('skill-admin');
+
             } else {
+                $this->addFlash('warning', 'Compétence déjà présente');
             }
         }
 
@@ -79,39 +86,71 @@ class SkillController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $slug = strtolower($this->slugger->slug($skill->getCategory()->getName() . '-' . $skill->getName()));
+            $manager = $this->managerRegistry->getManager();
 
-            if ($skillOld->getCreatedAt() == null) {
-                $skill->setCreatedAt(new \DateTimeImmutable);
+            if (DateTime::createFromImmutable($skillOld->getCreatedAt())->getTimestamp() < 0) {
+                $skill->setCreatedAt(new DateTimeImmutable);
             }
 
-            if($skill->getSlug()==null){
+            if ($skill->getSlug() == null) {
                 $skill->setSlug($slug);
             }
 
             if ($slug == $skillOld->getSlug()) {
                 $img = $form['image']->getData();
-                dd($img);
-                if($img){
+
+                if ($img) {
                     $imgName = time() . '.' . $img->guessExtension();
                     $skill->setImage($imgName);
                     $img->move($this->getParameter('skill_img_dir'), $imgName);
 
-                    if(file_exists($this->getParameter('skill_img_dir').'/'.$skillOld->getImage())){
-                        unlink($this->getParameter('skill_img_dir').'/'.$skillOld->getImage());
+                    if (file_exists($this->getParameter('skill_img_dir') . '/' . $skillOld->getImage())) {
+                        unlink($this->getParameter('skill_img_dir') . '/' . $skillOld->getImage());
                     }
-                }                    
+                }
+
+                $manager->persist($skill);
+                $manager->flush();
+            }else{
+                if ($this->skillRepository->findOneBy(['slug' => $slug]) == null) {
+                    $manager = $this->managerRegistry->getManager();
+                    $skill->setSlug($slug);
+    
+                    $img = $form['image']->getData();
+                    $imgName = time() . '.' . $img->guessExtension();
+                    $skill->setImage($imgName);
+                    $img->move($this->getParameter('skill_img_dir'), $imgName);
+    
+                    if ($img) {
+                        $imgName = time() . '.' . $img->guessExtension();
+                        $skill->setImage($imgName);
+                        $img->move($this->getParameter('skill_img_dir'), $imgName);
+    
+                        if (file_exists($this->getParameter('skill_img_dir') . '/' . $skillOld->getImage())) {
+                            unlink($this->getParameter('skill_img_dir') . '/' . $skillOld->getImage());
+                        }
+                    }
+
+                    $manager->persist($skill);
+                    $manager->flush();
+    
+                    $this->addFlash('sucess', 'Compétence ajoutée');
+                    return $this->redirectToRoute('skill-admin');
+    
+                } else {
+                    $this->addFlash('warning', 'Compétence déjà présente');
+                }
             }
 
-            $manager = $this->managerRegistry->getManager();
 
 
-
-            $manager->persist($skill);
-            $manager->flush();
+            $this->addFlash('sucess', 'Compétence modifiée');
+            return $this->redirectToRoute('skill-admin');
         }
 
         return $this->render('Skill/skill/formEdit.html.twig', [
             'form' => $form->createView(),
+            'skill'=>$skill,
         ]);
     }
 
