@@ -1,24 +1,18 @@
-<footer class="bg-dark bg-opacity-50">
-    <div class="container-fluid">
-        <div class="row py-3">
+<footer class="">
+    <div class="container-fluid py-4">
 
-            <div class="col-2 offset-3 text-center">
-                <h4 class="fs-4">Mon logo</h4>
-                <i class="bi bi-motherboard fs-1 text-light"></i>
-            </div>
-
-            <div class="col-2 offset-2 text-center">
-                <h4 class="fs-4">Mes coordonnées</h4>
-                <div class="text-light fs-5">
-                    <p>Localisé à {{dev_contact_city}}</p>                
-                    <p>Joignable au {{dev_contact_phone}}</p>
-                    <p>Par écrit {{dev_contact_mail}}</p>
-                </div>
+        <div class="d-none d-lg-block row justify-content-center">
+            <div class="col-12 text-center">
+                <img src="{{ asset('img/matete.png') }}" alt="Mon avatar">
             </div>
         </div>
-        <div class="text-center text-light py-1">
-            <span class="bi bi-c-circle "> </span>
-            <span class="">{{dev_contact_name}} 2022-{{'now' | date("Y")}} - Tous droits réservés</span>
+
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <span class="bi bi-c-circle text-color-orange fw-bold"></span>
+                <span class="text-color-orange fw-bold">{{dev_contact_name}} 2022-{{'now' | date("Y")}} - Tous droits réservés</span>
+            </div>
         </div>
+
     </div>
 </footer>
