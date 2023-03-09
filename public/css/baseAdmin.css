@@ -19,3 +19,7 @@ footer {
 main {
     min-height: calc(100vh - 9rem) ;
 }
+
+#profil_edit_description, #profil_description{
+    min-height: 10rem;
+}

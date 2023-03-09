@@ -99,7 +99,7 @@ class Profil
         return $this;
     }
 
-    public function getTile(): ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }

@@ -3,48 +3,53 @@
 namespace App\Controller;
 
 use App\Entity\Profil;
+use App\Form\ProfilType;
+use App\Form\ProfilEditType;
 use App\Repository\ProfilRepository;
+use App\Repository\SetupRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/profile', name: 'profile')]
 class ProfileController extends AbstractController
 {
     private ProfilRepository $profilRepository;
     private ManagerRegistry $managerRegistry;
+    private SetupRepository $setupRepository;
     public function __construct(
         ProfilRepository $profilRepository,
         ManagerRegistry $managerRegistry,
+        SetupRepository $setupRepository,
     ) {
         $this->profilRepository = $profilRepository;
         $this->managerRegistry = $managerRegistry;
+        $this->setupRepository = $setupRepository;
     }
-
+    
     #[Route('', name: '')]
     public function index(): Response
     {
         return $this->render('profile/indexAdmin.html.twig', [
-            'profile' => $this->profilRepository->findOneBy(['name' => 'heine']),
+            'profile' => $this->profilRepository->find(['id' => $this->setupRepository->findOneBy(['name'=>'showProfile'])->getValue()]),
         ]);
     }
 
     #[Route('-admin', name: '-admin')]
     public function indexAdmin(): Response
     {
-        dd($this->profilRepository->findAll());
         return $this->render('profile/indexAdmin.html.twig', [
             'profiles' => $this->profilRepository->findAll(),
         ]);
     }
 
-    #[Route('-admin/create', name: '-admin-creae')]
+    #[Route('-admin/create', name: '-admin-create')]
     public function create(Request $request): Response
     {
         $profile = new Profil();
-        $form = $this->createForm(ProfileType::class, $profile);
+        $form = $this->createForm(ProfilType::class, $profile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +73,7 @@ class ProfileController extends AbstractController
     #[Route('-admin/update/{id}', name: '-admin-update')]
     public function update(Request $request, Profil $profile): Response
     {
-        $form = $this->createForm(ProfileType::class, $profile);
+        $form = $this->createForm(ProfilEditType::class, $profile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

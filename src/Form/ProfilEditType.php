@@ -8,11 +8,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ProfilType extends AbstractType
+class ProfilEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -33,7 +33,7 @@ class ProfilType extends AbstractType
                 ]
             ])
             ->add('image',FileType::class,[
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'help' => 'Image format jpg, jpeg, webp ou png - 2 Mo maximum',
                 'constraints' => [

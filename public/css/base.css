@@ -25,3 +25,7 @@ main {
     width: 2rem;
     object-fit: contain;
 }
+
+#banner{
+    height: calc(100vh) ;
+}

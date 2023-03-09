@@ -4,38 +4,58 @@
 
 {% block body %}
 
-<main class="my-2">
-
-    <h4 class="text-center py-3">Les profiles</h4>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <td>Nom</td>
-                <td>Prénom</td>
-                <td>Titre</td>
-                <td>Pitch</td>
-                <td>Actions</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for vProfile in profiles %}
-            <tr>
-                <td>{{vProfile.lastName}}</td>
-                <td>{{vProfile.firstName}}</td>
-                <td>{{vProfile.title}}</td>
-                <td>{{vProfile.shortPitch}}</td>
-                <td>
-                    <a href="{{ path('profile-admin-update',{'id':vProfile.id}) }}" class="btn btn-info"><i class="bi bi-recycle fs-4"></i></a>
-                    <a href="{{ path('profile-admin-delete',{'id':vProfile.id}) }}" onclick="return('Tu veux supprimer ça ???')" class="btn btn-danger"><i class="bi bi-trash fs-4"></i></a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div>
-        <a href="{{ path('profile-admin-create') }}" class="btn btn-primary">Ajouter un profil</a>
+<main class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="text-center py-3">Les profils</h3>
+        </div>
     </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Nom</td>
+                        <td>Prénom</td>
+                        <td>Titre</td>
+                        <td>Pitch</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {% for vProfile in profiles %}
+                    <tr>
+                        <td>{{vProfile.id}}</td>
+                        <td>{{vProfile.lastName}}</td>
+                        <td>{{vProfile.firstName}}</td>
+                        <td>{{vProfile.title|u.truncate(15,'...',false)}}</td>
+                        <td>{{vProfile.shortPitch|u.truncate(15,'...',false)}}</td>
+                        <td>
+                            <a href="{{ path('profile-admin-update',{'id':vProfile.id}) }}" class="btn btn-info"><i
+                                    class="bi bi-recycle fs-5"></i></a>
+                            <a href="{{ path('profile-admin-delete',{'id':vProfile.id}) }}"
+                                onclick="alert('Tu veux supprimer ça ???')" class="btn btn-danger"><i
+                                    class="bi bi-trash fs-5"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <a href="{{ path('profile-admin-create') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+
 </main>
 
 {% endblock %}

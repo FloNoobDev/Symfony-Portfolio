@@ -1,0 +1,32 @@
+
+.bg-color-blue{
+    background-color: #264653;
+}
+.bg-color-green{
+    background-color: #2A9D8F;
+}
+.bg-color-yellow{
+    background-color: #E9C46A;
+}
+.bg-color-orange{
+    background-color: #F4A261;
+}
+.bg-color-red{
+    background-color: #E76F51;
+}
+
+.text-color-blue{
+    color: #264653;
+}
+.text-color-green{
+   color: #2A9D8F;
+}
+.text-color-yellow{
+    color: #E9C46A;
+}
+.text-color-orange{
+    color: #F4A261;
+}
+.text-color-red{
+    color: #E76F51;
+}
