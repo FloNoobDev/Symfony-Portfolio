@@ -47,6 +47,12 @@ class ProjectType extends AbstractType
                 ]
             ])
 
+            ->add('link',TextType::class,[
+                'attr'=>[
+                    'maxLength'=>100,
+                ]
+            ])
+            
             ->add('category', EntityType::class, [
                 'class' => ProjectCategory::class,
                 'choice_label' => 'name',

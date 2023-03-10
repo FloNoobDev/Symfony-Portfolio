@@ -31,4 +31,6 @@ footer img{
     object-fit: contain;
 }
 
-
+#brSmall, #br{
+    height: .5rem;
+}

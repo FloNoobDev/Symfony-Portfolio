@@ -23,3 +23,12 @@ main {
 #profil_edit_description, #profil_description{
     min-height: 10rem;
 }
+
+#project_edit_description, #project_description{
+    min-height: 10rem;
+}
+
+
+#brSmall, #br{
+    height: .5rem;
+}
