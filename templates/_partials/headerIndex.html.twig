@@ -18,9 +18,18 @@
               </li>  
               <li class="nav-item">
                 <a class="nav-link fw-bold text-color-blue" href="#contact">Me contacter</a>
-              </li>          
+              </li>   
+
+              {% if is_granted('ROLE_ADMIN-ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-color-blue" href="{{ path('index-admin') }}">Admin</a>
+              </li>     
+              {% endif %}
+                  
             </ul>
           </div>
         </div>
       </nav> 
 </header>
+
+

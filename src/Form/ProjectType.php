@@ -52,6 +52,12 @@ class ProjectType extends AbstractType
                     'maxLength'=>100,
                 ]
             ])
+
+            ->add('icon',TextType::class,[
+                'attr'=>[
+                    'maxLength'=>255,
+                ]
+            ])
             
             ->add('category', EntityType::class, [
                 'class' => ProjectCategory::class,

@@ -49,6 +49,9 @@
             "./tests/bootstrap.php"
         ]
     },
+    "rollerworks/password-strength-bundle": {
+        "version": "v2.2.3"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {

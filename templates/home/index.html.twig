@@ -2,72 +2,89 @@
 
 {% block title %}Portfolio{% endblock %}
 
-{% block description %}Portfolio de { dev_contact_name }{% endblock %}
+{% block description %}Portfolio de Florian{% endblock %}
 
 {% block body %}
 
-<main class="text-light">
+<main>
 
-    <hr class="border border-dark border-3">
+    {% include "_partials/br.html.twig" %}
 
     {# Production #}
-    <section id="project" class="bg-dark bg-opacity-50 py-3">
-        <h3 class="text-center">Mes productions</h3>
+    <section id="project" class="py-3">
+        <h3 class="text-center"><span class="badge bg-color-green">Mes productions</span></h3>
 
         <div class="container">
-            <div class="row">
+            <div class="row row-cols-1 row-cols-lg-2">
                 {% for cat in projectsCats %}
-                    {% for proj in cat.projects %}
-                        <div class="col-4 offset-1">
-                            <div class="card text-dark card-black">
-                                <div class="card-body">
-                                    <h4 class="card-title">{{proj.name}}</h4>
-                                    <p class="card-text">{{proj.description}}</p>
+                {% for proj in cat.projects %}
+                <div class="col mt-2">
+                    <div class="card text-dark bg-color-green">
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h4 class="card-title"><span class="badge bg-color-yellow">{{proj.name}}</span></h4>
+                                        <p class="card-text">{{proj.shortText}}</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <a class="text-color-yellow " href="{{proj.link}}">{{proj.icon|raw}}</a>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <p>{{cat.name}}</p>
+                                <div class="row pt-1">
+                                    <div class="col text-center border-start border-end border-warning rounded">
+                                        <p>{{ proj.description|u.truncate(50,'...') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    {% for skill in proj.skill %}
+                                        <div class="col-1">
+                                            <img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}" alt="Logo de {{skill.name}}">
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
                 {% endfor %}
             </div>
         </div>
     </section>
 
-    <hr class="border border-dark border-3">
+    {% include "_partials/br.html.twig" %}
 
     {# Compétence #}
-    <section id="skills" class="bg-dark bg-opacity-75 py-3">
-        <h3 class="text-center py-2">Mes compétences</h3>
-        <div class="container-fluid py-5">
-            <div class="row">
+    <section id="skills" class="py-3">
+        <h3 class="text-center"><span class="badge bg-color-green">Mes compétences</span></h3>
+
+        <div class="container py-5">
+            <div class="row row-cols-1 row-cols-lg-3 justify-content-between">
                 {% for category in skillsCategories %}
-                <div class="col">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="text-center">
-                                    <h5 class="text-start ps-2">{{category.name}}</h5>
-                                </div>
-
-                                <hr class="border border-dark border-2 opacity-75">
-
-                                <div class="text-center">
-                                    <table class="table">
-                                        {% for skill in category.skills %}
-                                        <tr class="text-light">
-                                            <td class="text-start"><img id="imgSkill"
-                                                    src="{{asset('img/skill/'~skill.image)}}" alt="Logo de {{skill.name}}"> -
-                                                {{skill.name}}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </table>
-                                </div>
-
-                            </div>
+                <div class="col pt-1">
+                        <div class="text-center">
+                            <h5 class="text-start ps-2 fw-bold">{{category.name}}</h5>
                         </div>
-                    </div>
+
+                        <hr class="border border-dark border-2 opacity-75">
+
+                        <div class="text-center">
+                            <table class="table">
+                                {% for skill in category.skills %}
+                                <tr class="text-light">
+                                    <td class="text-start"><img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}"
+                                            alt="Logo de {{skill.name}}"> -
+                                        {{skill.name}}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
                 </div>
                 {% endfor %}
             </div>
@@ -75,11 +92,11 @@
 
     </section>
 
-    <hr class="border border-dark border-3">
+    {% include "_partials/br.html.twig" %}
 
     {# Contact #}
-    <section id="contact" class="bg-dark bg-opacity-50 py-3">
-        <h3 class="text-center">Me contacter</h3>
+    <section id="contact" class="py-3">
+        <h3 class="text-center"><span class="badge bg-color-green">Me contacter</span></h3>
 
         {{ form_start(formContact) }}
         <div class="container border border-2 border-light rounded p-2">
@@ -117,7 +134,7 @@
 
     </section>
 
-    <hr class="border border-dark border-3">
+    {% include "_partials/br.html.twig" %}
 
 </main>
 
