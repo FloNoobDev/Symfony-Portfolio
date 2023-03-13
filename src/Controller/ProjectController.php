@@ -35,6 +35,20 @@ class ProjectController extends AbstractController
         $this->slugger = $slugger;
     }
 
+    
+    #[Route('', name: '')]
+    public function index() : Response{
+        return $this->render('Project/project/index.html.twig');
+    }
+
+    #[Route('-detail/{slug}', name: '-detail')]
+    public function detail(string $slug) : Response{
+        $project = $this->projectRepository->findOneBy(['slug'=>$slug]);
+        return $this->render('Project/project/detail.html.twig',[
+            'project' => $project,
+        ]);
+    }
+
     #[Route('-admin', name: '-admin')]
     public function indexAdmin(Request $request): Response
     {

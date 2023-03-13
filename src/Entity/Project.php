@@ -50,6 +50,9 @@ class Project
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'projects')]
     private Collection $skill;
 
+    #[ORM\Column]
+    private ?bool $displayOnIndex = null;
+
     public function __construct()
     {
         $this->skill = new ArrayCollection();
@@ -200,6 +203,18 @@ class Project
     public function removeSkill(Skill $skill): self
     {
         $this->skill->removeElement($skill);
+
+        return $this;
+    }
+
+    public function isDisplayOnIndex(): ?bool
+    {
+        return $this->displayOnIndex;
+    }
+
+    public function setDisplayOnIndex(bool $displayOnIndex): self
+    {
+        $this->displayOnIndex = $displayOnIndex;
 
         return $this;
     }

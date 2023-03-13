@@ -1,0 +1,29 @@
+
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5 text-black" id="addModalLabel">Création d'un projet</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+            {{ form_start(formContact) }}
+			<div class="modal-body text-black">
+				{{form_row(formContact.subject,{'label':'à propos :','label_attr':{'class':'text-capitalize'} })}}
+				{{form_row(formContact.email,{'label':'e-mail :','label_attr':{'class':'text-capitalize'} })}}
+				{{form_row(formContact.lastName,{'label':'nom :','label_attr':{'class':'text-capitalize'} })}}
+				{{form_row(formContact.firstName,{'label':'prénom :','label_attr':{'class':'text-capitalize'} })}}
+				{{form_row(formContact.message,{'label':'Dîtes m\'en plus :' })}}
+
+				{{form_row(formContact.submit, {'label':'Envoyer'})}}
+			</div>
+			{{form_end(formContact)}}
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+			</div>
+
+		</div>
+	</div>
+</div>

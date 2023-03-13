@@ -18,6 +18,7 @@
         {{form_start(form)}}
         <div class="col-12">
             {{form_row(form.name,{'label':'Désignation :' })}}
+            {{form_row(form.displayOnIndex, {'label':'Afficher sur accueil'})}}
             {{form_row(form.category, {'label':'Catégorie :'})}}
             {{form_row(form.started_at, {'label':'Débuté le :'})}}
             {{form_row(form.environment, {'label':'Environnement :'})}}
@@ -25,6 +26,7 @@
             {{form_row(form.description, {'label':'Description longue :'})}}
             {{form_row(form.link, {'label':'Lien vers :'})}}
             {{form_row(form.icon, {'label':'Icone :'})}}
+            {{form_row(form.skill, {'label':'Compétences liées :'})}}
             {{form_row(form.submit, {'label':'Modifier'})}}
         </div>
         {{form_end(form)}}

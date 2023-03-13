@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail project {{project.name}}{% endblock %}
+
+{% block body %}
+<main class="container">
+
+    <div class="row justify-content-center">
+        <h3 class="col-12 text-center">Fiche projet détaillée</h3>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        <h3 class="col-12 text-center"><span class="badge bg-light p-2 text-color-blue">{{ project.name }}</span></h3>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row row-cols-1 row-cols-lg-3 justify-content-center">
+        <div class="col border-start border-end rounded border-light bg-color-green me-1">
+            <h4>Type de projet : {{ project.category.name }}</h4>
+            <h4>Environment de développement : {{ project.environment }}</h4>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    {% for skill in project.skill %}
+                    <div class="col-1">
+                        <img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}"
+                            alt="Logo de {{skill.name}}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col d-block d-lg-none my-2"></div>
+        <div class="col border-start border-end rounded border-light bg-color-green">
+            <h5>{{project.shortText}}</h5>
+            <p>{{project.description}}</p>
+        </div>
+    </div>
+
+    {% include "_partials/brSmall.html.twig" %}
+
+    <div class="row justify-content-center">
+        <div class="col-1">
+            <a href="{{path('index')}}" class="btn btn-light fw-bold">Retour</a>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

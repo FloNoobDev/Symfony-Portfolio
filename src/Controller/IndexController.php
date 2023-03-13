@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\SetupRepository;
 use App\Repository\SkillRepository;
@@ -48,7 +47,7 @@ class IndexController extends AbstractController
             'profile' => $this->profilRepository->find(['id' => $this->setupRepository->findOneBy(['name'=>'showProfile'])->getValue()]),
             'projectsCats' => $this->projectCatRepo->findAll(),
             'skillsCategories' => $this->skillCatRepo->findAll(),
-            'formContact' => $this->createForm(ContactType::class, new Contact()),
+            'formContact' => $this->createForm(ContactType::class),
         ]);
     }
 

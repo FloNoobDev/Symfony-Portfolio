@@ -11,83 +11,78 @@
     {% include "_partials/br.html.twig" %}
 
     {# Production #}
-    <section id="project" class="py-3">
-        <h3 class="text-center"><span class="badge bg-color-green">Mes productions</span></h3>
+    <section id="project" class="container py-3">
+        <div class="row justify-content center">
+            <h3 class="text-center"><span class="badge bg-color-green">Mes productions</span></h3>
+        </div>
 
-        <div class="container">
-            <div class="row row-cols-1 row-cols-lg-2">
-                {% for cat in projectsCats %}
+        <div class="row row-cols-1 row-cols-lg-2">
+            {% for cat in projectsCats %}
                 {% for proj in cat.projects %}
-                <div class="col mt-2">
-                    <div class="card text-dark bg-color-green">
-                        <div class="card-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <h4 class="card-title"><span class="badge bg-color-yellow">{{proj.name}}</span></h4>
-                                        <p class="card-text">{{proj.shortText}}</p>
-                                    </div>
-                                    <div class="col text-center">
-                                        <a class="text-color-yellow " href="{{proj.link}}">{{proj.icon|raw}}</a>
-                                    </div>
-                                </div>
-                                <div class="row pt-1">
-                                    <div class="col text-center border-start border-end border-warning rounded">
-                                        <p>{{ proj.description|u.truncate(50,'...') }}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card-footer">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    {% for skill in proj.skill %}
-                                        <div class="col-1">
-                                            <img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}" alt="Logo de {{skill.name}}">
+                    {% if proj.displayOnIndex %}
+                    <div class="col mt-2">
+                        <div class="card text-dark bg-light">
+                            <div class="card-body bg-color-{{cat.slug =='web-app' ? 'yellow' : cat.slug =='videogames' ? 'orange' : 'red'  }}">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <h4 class="card-title"><span class="badge bg-secondary">{{proj.name}}</span></h4>
+                                            <p class="card-text">{{proj.shortText}}</p>
                                         </div>
-                                    {% endfor %}
+                                        <div class="col text-center border-start border-dark">
+                                            <a class="text-light text-center" href="{{proj.link}}">{{proj.icon|raw}}</a>
+                                            <p>Clic au-dessus pour essayer</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <div class="col border-dark text-center border-start border-end border-warning rounded py-1">
+                                            <a href="{{path('project-detail',{'slug':proj.slug})}}" class="btn btn-secondary fw-bold fst-italic">En savoir plus</a>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
+                            
                         </div>
                     </div>
-                </div>
+                    {% endif %}
+
                 {% endfor %}
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </section>
 
     {% include "_partials/br.html.twig" %}
 
     {# Compétence #}
-    <section id="skills" class="py-3">
-        <h3 class="text-center"><span class="badge bg-color-green">Mes compétences</span></h3>
+    <section id="skills" class="container py-3">
+        <div class="row justify-content center">
+            <h3 class="text-center"><span class="badge bg-color-green">Mes compétences</span></h3>
+        </div>
 
-        <div class="container py-5">
-            <div class="row row-cols-1 row-cols-lg-3 justify-content-between">
-                {% for category in skillsCategories %}
-                <div class="col pt-1">
-                        <div class="text-center">
-                            <h5 class="text-start ps-2 fw-bold">{{category.name}}</h5>
-                        </div>
 
-                        <hr class="border border-dark border-2 opacity-75">
-
-                        <div class="text-center">
-                            <table class="table">
-                                {% for skill in category.skills %}
-                                <tr class="text-light">
-                                    <td class="text-start"><img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}"
-                                            alt="Logo de {{skill.name}}"> -
-                                        {{skill.name}}</td>
-                                </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
+        <div class="row row-cols-1 row-cols-lg-3 justify-content-between">
+            {% for category in skillsCategories %}
+            <div class="col pt-1">
+                <div class="text-center">
+                    <h5 class="text-start ps-2 fw-bold">{{category.name}}</h5>
                 </div>
-                {% endfor %}
+
+                <hr class="border border-dark border-2 opacity-75">
+
+                <div class="text-center">
+                    <table class="table">
+                        {% for skill in category.skills %}
+                        <tr class="text-light">
+                            <td class="text-start"><img id="imgSkill" src="{{asset('img/skill/'~skill.image)}}"
+                                    alt="Logo de {{skill.name}}"> -
+                                {{skill.name}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
+            {% endfor %}
         </div>
 
     </section>
@@ -95,42 +90,16 @@
     {% include "_partials/br.html.twig" %}
 
     {# Contact #}
-    <section id="contact" class="py-3">
-        <h3 class="text-center"><span class="badge bg-color-green">Me contacter</span></h3>
+    <section id="contact" class="container py-3">
 
-        {{ form_start(formContact) }}
-        <div class="container border border-2 border-light rounded p-2">
-
-            <div class="row">
-                <div class="col-4 offset-2">
-                    {{ form_row(formContact.fullName) }}
-                </div>
-                <div class="col-4">
-                    {{ form_row(formContact.email) }}
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-2 text-center">
+                <button type="button" class="btn bg-color-green fs-5 fw-bold text-light" data-bs-toggle="modal"
+                    data-bs-target="#contactModal">Me contacter</button>
             </div>
-
-            <div class="row">
-                <div class="col-8 offset-2">
-                    {{ form_row(formContact.subject) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-8 offset-2">
-                    {{ form_row(formContact.message) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-8 offset-2 my-3 text-end">
-                    <button type="reset" class="btn btn-outline-danger me-3">Annuler</button>
-                    <button type="submit" class="btn btn-success">Envoyer</button>
-                </div>
-            </div>
-
         </div>
-        {{ form_end(formContact) }}
+
+        {% include "home/modalContact.html.twig" %}
 
     </section>
 
