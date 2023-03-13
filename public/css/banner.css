@@ -1,7 +1,30 @@
 #banner {
     height: calc(100vh);
+
     background-image: url('../img/wallpaperBanner.png');
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
+
     background-size: cover;
+
+    position: relative;
+}
+
+
+#banner h2 {
+
+    position: absolute;
+    text-align: center;
+
+    top: calc(55vh - 1rem);
+    left: calc(45vw - 9rem);
+}
+
+#banner h3 {
+
+    position: absolute;
+    text-align: center;
+
+    top: calc(55vh + 2rem);
+    left: calc(48vw - 7rem);
 }
