@@ -7,8 +7,13 @@
 
     <h2 class="fw-bold text-light">{{profile.lastName|upper}} {{profile.firstName}}</h2>
 
-    <h4 id="t1" class="text-capitalize fw-bold text-light">{{profile.title1}}</h4>
-    <h4 id="t2" class="text-capitalize fw-bold text-light">{{profile.title2}}</h4>
+    <div class="d-none d-lg-block">
+        <h5 id="t1" class="text-capitalize fw-bold text-light">{{profile.title1}} - {{profile.title2}}</h5>
+    </div>
+    <div class="d-block d-lg-none">
+        <h5 id="t1" class="text-capitalize fw-bold text-light">{{profile.title1}}</h5>
+        <h5 id="t2" class="text-capitalize fw-bold text-light">{{profile.title2}}</h5>
+    </div>
 
     <a id="btnClicEnter" href="#project"><i class="bi bi-caret-down-square-fill text-color-yellow"></i></a>
 
