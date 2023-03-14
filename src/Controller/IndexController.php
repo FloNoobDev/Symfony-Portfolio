@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ContactType;
 use App\Repository\SetupRepository;
 use App\Repository\SkillRepository;
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\Mime\Address;
 use App\Repository\ProfilRepository;
 use App\Repository\ProjectRepository;
@@ -53,12 +54,13 @@ class IndexController extends AbstractController
         if ($formContact->isSubmitted() && $formContact->isValid()) {
             if (empty($formContact['honeypot']->getData())) {
                 $contact = $formContact->getData();
+
                 $email = (new TemplatedEmail())
-                    ->from(new Address($contact['email'], $contact['firstName'] . ' ' . $contact['lastName']))
+                    ->from(new Address($this->getParameter('dev_contact_mail'), 'Website'))
                     ->to(new Address($this->getParameter('dev_contact_mail'), 'Portefolio'))
-                    // ->addCc(new Address($contact['email']))
+                    ->addCc(new Address($contact['email'], $contact['firstName'] . ' ' . $contact['lastName']))
                     ->replyTo(new Address($contact['email'], $contact['firstName'] . ' ' . $contact['lastName']))
-                    ->subject('HEINE Florian - Contact ' . $contact['subject'])
+                    ->subject('HEINE Florian - ' . $contact['subject'])
                     ->htmlTemplate('email/contact.html.twig')
                     ->context([
                         'firstName' => $contact['firstName'],
@@ -67,11 +69,10 @@ class IndexController extends AbstractController
                         'subject' => $contact['subject'],
                         'message' => $contact['message']
                     ]);
-                // dd($email);
-                
+
                 $mailer->send($email);
                 $this->addFlash('success', 'Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.');
-                return $this->redirectToRoute('contact');
+                return $this->redirectToRoute('index');
             } else {
                 $this->addFlash('danger', 'Are you for real ?');
                 return $this->redirectToRoute('index');
