@@ -1,5 +1,5 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/banner.css') }}">
+<link rel="stylesheet" href="{{ asset('css/banner.css') }}">
 {% endblock %}
 
 
@@ -7,6 +7,48 @@
 
     <h2 class="fw-bold text-light">{{profile.lastName|upper}} {{profile.firstName}}</h2>
 
-    <h3 class="text-capitalize fw-bold text-light">{{profile.title}}</h3>   
+    <h4 id="t1" class="text-capitalize fw-bold text-light">{{profile.title1}}</h4>
+    <h4 id="t2" class="text-capitalize fw-bold text-light">{{profile.title2}}</h4>
+
+    <a id="btnClicEnter" href="#project"><i class="bi bi-caret-down-square-fill text-color-yellow"></i></a>
 
 </section>
+
+{% block javascripts %}
+<script>
+    const bannerBtnClicEnter = document.getElementById('btnClicEnter');
+
+    scaleDown();
+
+    let animUp;
+    let animDown;
+
+    InitInterval();
+
+    bannerBtnClicEnter.addEventListener("pointerenter", (event) => {        
+        clearInterval(animUp);
+        clearInterval(animDown);}
+        );
+
+    bannerBtnClicEnter.addEventListener("pointerleave", (event) => {
+        InitInterval();
+    });
+
+    function InitInterval(){
+        animUp = window.setInterval(() => {
+                scaleUp();
+            }, 1000);
+
+            animDown = window.setInterval(() => {
+                scaleDown();
+            }, 2000);
+    }
+
+    function scaleDown() {
+        bannerBtnClicEnter.style.scale = '0.85';
+    }
+    function scaleUp() {
+        bannerBtnClicEnter.style.scale = '1.15';
+    }
+</script>
+{% endblock %}

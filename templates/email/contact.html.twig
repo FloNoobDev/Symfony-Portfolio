@@ -1,0 +1,12 @@
+<h2>Objet : {{ subject }}</h2>
+
+<h3>Coordonnées du contact :</h3>
+
+<ul>
+    <li>Nom : {{ lastName|upper ~ ' ' ~ firstName }}</li>
+    <li>Email : {{ emailAddress }}</li>
+</ul>
+
+
+<p>{{ message|nl2br }}</p>
+

@@ -21,7 +21,6 @@
                         <td>Id</td>
                         <td>Nom</td>
                         <td>Prénom</td>
-                        <td>Titre</td>
                         <td>Pitch</td>
                         <td>Actions</td>
                     </tr>
@@ -32,7 +31,6 @@
                         <td>{{vProfile.id}}</td>
                         <td>{{vProfile.lastName}}</td>
                         <td>{{vProfile.firstName}}</td>
-                        <td>{{vProfile.title|u.truncate(15,'...',false)}}</td>
                         <td>{{vProfile.shortPitch|u.truncate(15,'...',false)}}</td>
                         <td>
                             <a href="{{ path('profile-admin-update',{'id':vProfile.id}) }}" class="btn btn-info"><i

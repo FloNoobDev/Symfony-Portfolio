@@ -28,11 +28,14 @@ class Profil
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
     
-    #[ORM\Column(length: 100)]
-    private ?string $title = null;
-
     #[ORM\Column(length: 255)]
     private ?string $hobby = null;
+
+    #[ORM\Column(length: 35)]
+    private ?string $title1 = null;
+
+    #[ORM\Column(length: 35)]
+    private ?string $title2 = null;
 
     public function getId(): ?int
     {
@@ -99,18 +102,6 @@ class Profil
         return $this;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
     public function getHobby(): ?string
     {
         return $this->hobby;
@@ -119,6 +110,30 @@ class Profil
     public function setHobby(string $hobby): self
     {
         $this->hobby = $hobby;
+
+        return $this;
+    }
+
+    public function getTitle1(): ?string
+    {
+        return $this->title1;
+    }
+
+    public function setTitle1(string $title1): self
+    {
+        $this->title1 = $title1;
+
+        return $this;
+    }
+
+    public function getTitle2(): ?string
+    {
+        return $this->title2;
+    }
+
+    public function setTitle2(string $title2): self
+    {
+        $this->title2 = $title2;
 
         return $this;
     }

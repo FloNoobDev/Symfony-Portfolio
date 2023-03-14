@@ -20,11 +20,27 @@
     left: calc(45vw - 9rem);
 }
 
-#banner h3 {
+#banner #t1 {
 
     position: absolute;
     text-align: center;
 
     top: calc(55vh + 2rem);
+    left: calc(48vw - 5rem);
+}
+#banner #t2 {
+
+    position: absolute;
+    text-align: center;
+
+    top: calc(55vh + 4rem);
     left: calc(48vw - 7rem);
+}
+
+#banner a {
+    position: absolute;
+    bottom: 2.25rem;
+    right: 3.5rem;
+    font-size: 3rem;
+    transition-duration: 1s;
 }

@@ -27,9 +27,14 @@ class ProfilEditType extends AbstractType
                     'maxLength' => 50,
                 ]
             ])
-            ->add('title', TextType::class, [
+            ->add('title1', TextType::class, [
                 'attr' => [
-                    'maxLength' => 100,
+                    'maxLength' => 35,
+                ]
+            ])
+            ->add('title2', TextType::class, [
+                'attr' => [
+                    'maxLength' => 35,
                 ]
             ])
             ->add('image',FileType::class,[

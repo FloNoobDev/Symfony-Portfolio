@@ -1,0 +1,11 @@
+<div id="messageFlash" class="row">
+    <div class="col-4 offset-4 text-center">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="flash-{{ label }} bg-{{ label }} text-light rounded my-1 p-2 border border-2 border-light">
+                <h5 class="font-weight-bold p-3">{{ message }}</h5>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
